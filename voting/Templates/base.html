@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vote App{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .hero-section {
+            padding: 50px 0;
+        }
+
+        .custom-card {
+            background: rgba(173, 216, 230, 0.85);
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-card img {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            height: 200px;
+
+        }
+
+        .custom-btn {
+            background-color: #007bff;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Vote App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/votant">Voter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/co">Centre de Comptage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/de">Dépouillement</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section des cartes -->
+    <div class="container hero-section text-center">
+        <div class="row justify-content-center">
+            <!-- Carte 1 : Voter -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card">
+                    <img src="{% static 'images/voter.jpeg' %}" class="card-img-top" alt="Voter">
+                    <div class="card-body">
+                        <h5 class="card-title">Voter</h5>
+                        <p class="card-text">Exprimez votre voix en toute sécurité et transparence.</p>
+                        <a href="/votant" class="btn custom-btn">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte 2 : Centre de Comptage -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card">
+                    <img src="{% static 'images/comptage.jpg' %}"  class="card-img-top" alt="Centre de Comptage">
+                    <div class="card-body">
+                        <h5 class="card-title">Centre de Comptage</h5>
+                        <p class="card-text">Suivez en direct le comptage des votes en temps réel.</p>
+                        <a href="/co" class="btn custom-btn">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 3 : Dépouillement -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card">
+                    <img  src="{% static 'images/depouillement.jpg' %}" class="card-img-top" alt="Dépouillement">
+                    <div class="card-body">
+                        <h5 class="card-title">Dépouillement</h5>
+                        <p class="card-text">Analysez les résultats et les statistiques de l’élection.</p>
+                        <a href="/de" class="btn custom-btn">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section des messages  -->
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Contenu dynamique -->
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

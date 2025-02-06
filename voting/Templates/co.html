@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Centre de Comptage CO{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Centre de Comptage CO</h2>
+
+    {% if messages %}
+    <div class="alert alert-warning" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if covotants %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de Naissance</th>
+                    <th>Identifiant</th>
+                    <th>Bulletin (chiffré)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for covotant in covotants %}
+                <tr>
+                    <td>{{ covotant.id }}</td>
+                    <td>{{ covotant.nom }}</td>
+                    <td>{{ covotant.prenom }}</td>
+                    <td>{{ covotant.datenaissance }}</td>
+                    <td>{{ covotant.identification }}</td>
+                    <td><code>{{ covotant.bulltinvote }}</code></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center">
+        Aucun vote enregistré pour le moment.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Voter{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%; background-color: rgba(173, 216, 230, 0.85);">
+        <div class="text-center">
+            <img src="{% static 'images/voter.jpeg' %}" style="border-radius:50px" alt="Vote" width="72" height="72" class="mb-3">
+            <h2 class="mb-3">Vote Personne</h2>
+        </div>
+        <form method="POST" action="{% url 'votant' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Enter prénom" required>
+            </div>
+            <div class="mb-3">
+                <label for="date_naissance" class="form-label">Date de Naissance</label>
+                <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+            </div>
+            <div class="mb-3">
+                <label for="identifiant" class="form-label">Identifiant</label>
+                <input type="text" class="form-control" id="identifiant" name="identifiant" placeholder="Enter identification" required>
+            </div>
+            <div class="mb-3">
+                <label for="choix" class="form-label">Choix du Candidat</label>
+                <select class="form-select" id="choix" name="bulltinvote" required>
+                    <option value="" disabled selected>Choisir un candidat</option>
+                    <option value="candidat1">Candidat 1</option>
+                    <option value="candidat2">Candidat 2</option>
+                    <option value="candidat3">Candidat 3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Voter</button>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript pour validation Bootstrap -->
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })();
+</script>
+{% endblock %}
