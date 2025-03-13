@@ -46,4 +46,30 @@ Avant de lancer l’application, vérifiez d’avoir installé et configuré :
 Clonez le répertoire sur votre machine locale et placez-vous dans le dossier du projet :
 ```bash
 git clone https://github.com/oussama-boussihi/systeme-de-vote.git
-cd systeme-de-vote ```
+cd systeme-de-vote
+
+### **2. Installation des Dépendances**
+```bash
+pip install -r requirements.txt    
+
+### **3. Configuration de GnuPG et des Clés**
+
+- Vérifiez que le chemin vers l’exécutable GnuPG est correctement défini (ex. : C:/Program Files (x86)/gnupg/bin/gpg.exe).
+- Générez les clés PGP pour chaque entité (votant, CO, DE) et placez-les dans le dossier dédié aux clés.
+- Mettez à jour les fichiers view.py et settings.py avec les adresses email et les APP-PASSWORD correspondants.
+### **4. Migrations et Démarrage du Serveur**
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+### **Captures d’Écran des Interfaces: **
+**Page d’Accueil**
+![Voting home page](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Acceuil.png)
+
+
+
+
+
+
+
