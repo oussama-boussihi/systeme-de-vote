@@ -51,7 +51,9 @@ git clone https://github.com/oussama-boussihi/systeme-de-vote.git cd systeme-de-
 
 
 ### **2. Installation des Dépendances**
-```  pip install -r requirements.txt ```
+```  
+pip install -r requirements.txt
+ ```
 
 
 ### **3. Configuration de GnuPG et des Clés**
@@ -61,9 +63,12 @@ git clone https://github.com/oussama-boussihi/systeme-de-vote.git cd systeme-de-
 - Mettez à jour les fichiers view.py et settings.py avec les adresses email et les APP-PASSWORD correspondants.
 
 ### **4. Migrations et Démarrage du Serveur**
-``` python manage.py makemigrations  ```
-``` python manage.py migrate  ```
-``` python manage.py runserver ```
+```
+python manage.py makemigrations  
+python manage.py migrate  
+python manage.py runserver
+
+```
 
 ### **Captures d’Écran des Interfaces: **
 **Page d’Accueil**
