@@ -1,135 +1,469 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Vote App{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+        position: relative;
+        background-image: url("{% static 'images/fsk.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+      }
+      
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%; 
+        height: 100%;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
+        pointer-events: none;
+        z-index: 1;
+        
+      }
+      
 
-        .hero-section {
-            padding: 50px 0;
-        }
 
-        .custom-card {
-            background: rgba(173, 216, 230, 0.85);
-            border-radius: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .navbar {
+      background: linear-gradient(300deg, #0A192F, #333C4B, #3761A0);
+      background-size: 180% 180%;
+      animation: gradient-animation 18s ease infinite;
+    }
+    @keyframes gradient-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    .hero-text {
+      font-size: 4rem;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 2;
+      color: #3B3B3Bs;
 
-        .custom-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-        }
+      
+    }
+    .hero-text:hover {
+      transform: translateY(-5px);
+    }
 
-        .custom-card img {
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            height: 200px;
+    .btn-wide {
+      width: 200px;
+    }
+   
+    .btn {
+      background-color: transparent !important;
+      border: 3px solid #48B8A0;
+      color: #48B8A0;
+      transition: background-color 0.3s, color 0.3s;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 30px;
+      padding: 9px 17px;
+    }
+    .btn:hover {
+      background-color: #48B8A0 !important;
+      color: white !important;
+    }
+    .menu-container {
+      display: flex;
+      align-items: center;
+    }
+    .menu-text {
+      color: #48B8A0;
+      font-weight: bold;
+      margin-left: 5px;
+      font-size: 1.2rem;
+    }
+    .bar{
+        color: #48B8A0;
+        font-weight: bold;
+    }
+    .navbar-toggler{
+        color: #48B8A0;
+        border: 2px solid #48B8A0;
+    }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%2348B8A0' stroke-width='3' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
 
+  
+    .card-custom{
+        height: 300px; 
+        background: linear-gradient(300deg, rgba(10, 25, 47, 0.95), rgba(51, 60, 75, 0.95), rgba(55, 97, 160, 0.95));
+        background-size: 180% 180%;
+        animation: gradient-animation 18s ease infinite;
+        transition: transform 0.5s ease;
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        
+      }
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;s
         }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      } 
+      .card-custom:hover {
+        transform: scale(1.1); 
+      }
+      .txt{
+        color:  #48B8A0;
+        font-weight: bold;
+      }
+      .txt:hover{
+        color: white;
+      }
+      .img-fluid {
+        transition: transform 0.5s ease;
+      }
+      
+      .img-fluid:hover {
+        transform: scale(1.15);
+      }
+      nav{
+        height: 70px;
+      }
 
-        .custom-btn {
-            background-color: #007bff;
-            color: white;
-            border-radius: 50px;
-            padding: 10px 20px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
 
-        .custom-btn:hover {
-            background-color: #0056b3;
+      .form-label {
+        color: #48B8A0;
+        font-weight: bold;
+        font-size: 17px;
+      }
+      
+      .form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+        border: 1px solid #48B8A0;
+      }
+      
+      .form-control::-webkit-input-placeholder {
+        color: #ccc;
+      }
+      .form-control::-moz-placeholder {
+        color: #ccc;
+      }
+      .form-control:-ms-input-placeholder {
+        color: #ccc;
+      }
+      .form-control::placeholder {
+        color: #ccc;
+      }
+      
+     
+      .form-select {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+        border: 1px solid #48B8A0;
+      }
+      
+     
+      .form-select option:disabled {
+        color: black;
+        font-weight: bold;
+      }
+      
+      .form-select option {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: black;
+      }
+    
+      .form-select option:hover {
+        background-color: #0A192F !important;
+        color: white !important;
+      }
+      .voter-box {
+        border: 4px solid #48B8A0;
+        box-shadow: 0 0 20px 10px rgba(72, 184, 160, 0.9);
+      }
+      .banner {
+        width: 100%;
+        height: 25vh; 
+        background: rgba(137, 137, 216, 0.6); 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .banner .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .banner-svg {
+        transition: all 0.3s ease;
+      }
+      
+      .banner-svg path {
+        transition: all 0.3s ease;
+      }
+      
+      .banner-svg:hover path {
+        stroke: #333; 
+        fill: #FEC40E !important; 
+      }
+      
+      
+      
+      .banner-text {
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: 800;
+        max-width: 800px;
+        text-align: center;
+      }
+     
+      .message-popup {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1050;
+        max-width: 90%;
+        width: auto;
+      }
+
+     
+      .message-item {
+        background: rgba(0, 0, 0, 0.3); 
+        color: #48B8A0;
+        padding: 15px 20px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 10px rgba(56, 58, 59, 0.7);
+        position: relative;
+        font-size: 1rem;
+        animation: fadeIn 0.5s ease;
+        height: 50px;
+      }
+
+      .message-close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+     
+      .table-custom {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        border: none;
+        table-layout: fixed;  
+        width: 100%;
+      }
+      .table-custom thead th {
+        background: linear-gradient(300deg, rgba(10, 25, 47, 0.95), rgba(51, 60, 75, 0.95), rgba(55, 97, 160, 0.95));
+        color: #48B8A0;
+        border: none;
+        font-weight: bold;
+        text-align: center;  
+      }
+      .table-custom td,
+      .table-custom th {
+        vertical-align: middle;
+        border: none;
+        padding: 12px;
+        text-align: center;
+      }
+      
+     
+      .table-custom code {
+        background-color: rgba(72, 184, 160, 0.2);
+        padding: 2px 5px;
+        border-radius: 3px;
+        color: #48B8A0;
+        font-size: 0.9rem;
+      }
+      
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1100;
+      }
+      .modal-content {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 8px;
+        color: white;
+        max-width: 90%;
+        max-height: 80%;
+        overflow-y: auto;
+        position: relative;
+      }
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+      }
+      .modal-content h4 {
+        margin-top: 0;
+      }
+
+     
+      .navbar-collapse {
+        background: linear-gradient(300deg, #0A192F, #333C4B, #3761A0);
+        background-size: 180% 180%;
+        animation: gradient-animation 18s ease infinite;
+        border-bottom: 2px solid #48B8A0;
+        border-radius: 0 0 10px 10px;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Effet "fenêtre" */
+      }
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;
         }
-    </style>
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .navbar-collapse .navbar-nav .nav-link {
+        color: #48B8A0 !important;
+        font-weight: bold;
+        margin: 5px 15px;
+        padding: 8px 15px;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .navbar-collapse .navbar-nav .nav-link:hover {
+        color: white !important;
+        background-color: rgba(72, 184, 160, 0.2);
+        border-radius: 5px;
+      }  
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">Vote App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/votant">Voter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/co">Centre de Comptage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/de">Dépouillement</a>
-                    </li>
-                </ul>
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center ps-0">
+    <div class="menu-container">
+      <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" ></span>
+      </button>
+      <span class="menu-text ms-2">Menu </span>
+      <span class="mx-3 bar"> | </span>
+      <a class="navbar-brand ms-2 bar fs-3" href="/">
+        <svg  height="40px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="#000000"><polyline points="16 40 8 40 8 56 56 56 56 40 48 40"/><polyline points="52 28 56 32 40 48"/>
+            <polyline points="24 48 8 32 32 8 44 20"/><line x1="16" y1="48" x2="48" y2="48"/><polyline points="56 16 32 40 24 32"/>
+        </svg> E-Vote </a>
+    </div>
+      <div>
+        <a href="/votant" >
+        <button class="btn btn-wide me-2" >Voter</button>
+        </a>
+        <a href="/resultats" >
+        <button class="btn btn-wide">Résultats </button>
+        </a>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="/co">Centre CO</a></li>
+      <li class="nav-item"><a class="nav-link" href="/de">Centre DE</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  {% block hero %}
+  <div class="container-fluid mt-5 pt-5 ">
+    <div class="row align-items-center mt-5 pt-4">
+      <div class="col-md-4">
+        <h1 class="hero-text  ms-4"> VOTEZ EN <br >TOUTE <br ><span style="color:#FEC40E">SECURITE</span> </h1>
+      </div>
+      <div class="col-md-8 d-flex justify-content-end pe-5 ">
+        <div class="row">
+          <div class="col-md-4 ">
+            <div class="card-custom">
+              <a href="/votant"><img src="https://vote411-prod.s3.amazonaws.com/s3fs-public/2019-08/icon-register.png" alt="icon" class="img-fluid"></a>
+              <a href="/votant" class="text-decoration-none"><h5 class="txt mt-3">Inscrivez-vous pour voter</h5></a>
             </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-custom">
+              <img src="https://vote411-prod.s3.amazonaws.com/s3fs-public/2019-08/icon-status.png" alt="icon" class="img-fluid">
+              <a href="/liste_votants" class="text-decoration-none"><h5 class="txt mt-3">Consultez la liste des électeurs</h5></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-custom">
+              <img src="https://vote411-prod.s3.amazonaws.com/s3fs-public/2019-08/icon-ballot.png" alt="icon" class="img-fluid">
+              <a href="/resultats" class="text-decoration-none"><h5 class="txt mt-3">Consultez les résultats des élections</h5></a>
+            </div>
+          </div>
         </div>
-    </nav>
-
-    <!-- Section des cartes -->
-    <div class="container hero-section text-center">
-        <div class="row justify-content-center">
-            <!-- Carte 1 : Voter -->
-            <div class="col-md-4 mb-4">
-                <div class="card custom-card">
-                    <img src="{% static 'images/voter.jpeg' %}" class="card-img-top" alt="Voter">
-                    <div class="card-body">
-                        <h5 class="card-title">Voter</h5>
-                        <p class="card-text">Exprimez votre voix en toute sécurité et transparence.</p>
-                        <a href="/votant" class="btn custom-btn">Accéder</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Carte 2 : Centre de Comptage -->
-            <div class="col-md-4 mb-4">
-                <div class="card custom-card">
-                    <img src="{% static 'images/comptage.jpg' %}"  class="card-img-top" alt="Centre de Comptage">
-                    <div class="card-body">
-                        <h5 class="card-title">Centre de Comptage</h5>
-                        <p class="card-text">Suivez en direct le comptage des votes en temps réel.</p>
-                        <a href="/co" class="btn custom-btn">Accéder</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte 3 : Dépouillement -->
-            <div class="col-md-4 mb-4">
-                <div class="card custom-card">
-                    <img  src="{% static 'images/depouillement.jpg' %}" class="card-img-top" alt="Dépouillement">
-                    <div class="card-body">
-                        <h5 class="card-title">Dépouillement</h5>
-                        <p class="card-text">Analysez les résultats et les statistiques de l’élection.</p>
-                        <a href="/de" class="btn custom-btn">Accéder</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+ 
 
-    <!-- Section des messages  -->
-    <div class="container mt-4">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+  <!-- Horizontal Banner -->
+<div class="banner mt-3">
+  <div class="container d-flex align-items-center justify-content-center">
+    <svg class="mb-4 banner-svg" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" 
+            d="M12.4472 1.10557C12.1657 0.964809 11.8343 0.964809 11.5528 1.10557L3.55279 5.10557C3.214 5.27496 3 5.62123 3 6V12C3 14.6622 3.86054 16.8913 5.40294 18.7161C6.92926 20.5218 9.08471 21.8878 11.6214 22.9255C11.864 23.0248 12.136 23.0248 12.3786 22.9255C14.9153 21.8878 17.0707 20.5218 18.5971 18.7161C20.1395 16.8913 21 14.6622 21 12V6C21 5.62123 20.786 5.27496 20.4472 5.10557L12.4472 1.10557ZM5 12V6.61803L12 3.11803L19 6.61803V12C19 14.1925 18.305 15.9635 17.0696 17.425C15.8861 18.8252 14.1721 19.9803 12 20.9156C9.82786 19.9803 8.11391 18.8252 6.93039 17.425C5.69502 15.9635 5 14.1925 5 12ZM16.7572 9.65323C17.1179 9.23507 17.0714 8.60361 16.6532 8.24284C16.2351 7.88207 15.6036 7.9286 15.2428 8.34677L10.7627 13.5396L8.70022 11.5168C8.30592 11.1301 7.67279 11.1362 7.28607 11.5305C6.89935 11.9248 6.90549 12.5579 7.29978 12.9446L10.1233 15.7139C10.3206 15.9074 10.5891 16.0106 10.8651 15.9991C11.1412 15.9876 11.4002 15.8624 11.5807 15.6532L16.7572 9.65323Z" 
+            stroke="#FEC40E" fill="rgba(255, 255, 255, 0.1)" stroke-width="1.5"/>
+    </svg>
+    <p class="banner-text">
+      Notre système de vote sécurisé garantit l’anonymat et l’intégrité de chaque voix grâce au chiffrement avancé.
+    </p>
+  </div>
+</div>
 
-    <!-- Contenu dynamique -->
-    <div class="container mt-5">
-        {% block content %}{% endblock %}
-    </div>
+{% endblock %}
 
-    <!-- Scripts Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+{% block content %}{% endblock %}
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

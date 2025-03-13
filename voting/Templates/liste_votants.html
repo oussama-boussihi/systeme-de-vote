@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Centre de Dépouillement DE{% endblock %}
+{% block title %}Liste des Votants{% endblock %}
 {% block hero %}{% endblock %}
 
 {% block content %}
-  {# Message Popup – displayed only when there are messages #}
+  {# Message Popup – affiché uniquement s'il y a des messages #}
   {% if messages %}
   <div id="message-popup" class="message-popup">
     {% for message in messages %}
@@ -17,11 +17,11 @@
   {% endif %}
 
   <div class="container mt-5 pt-5">
-    <h2 class="text-center mb-4 "   style="color: #48B8A0; font-weight: bold;">
-      Centre de Dépouillement DE
+    <h2 class="text-center mb-4" style="color: #48B8A0; font-weight: bold;">
+      Liste des Votants
     </h2>
     
-    {% if devotants %}
+    {% if votants %}
       <div class="table-responsive">
         <table class="table table-custom table-striped table-hover shadow-sm">
           <thead class="thead-dark">
@@ -31,20 +31,16 @@
               <th>Prénom</th>
               <th>Date de Naissance</th>
               <th>Identifiant</th>
-              <th>Bulletin (déchiffré)</th>
             </tr>
           </thead>
           <tbody>
-            {% for devotant in devotants %}
+            {% for votant in votants %}
             <tr>
-              <td>{{ devotant.id }}</td>
-              <td>{{ devotant.nom }}</td>
-              <td>{{ devotant.prenom }}</td>
-              <td>{{ devotant.datenaissance }}</td>
-              <td>{{ devotant.identification }}</td>
-              <td class="text-monospace text-success font-weight-bold">
-                {{ devotant.bulltinvote }}
-              </td>
+              <td>{{ votant.id }}</td>
+              <td>{{ votant.nom }}</td>
+              <td>{{ votant.prenom }}</td>
+              <td>{{ votant.datenaissance }}</td>
+              <td>{{ votant.identification }}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -52,14 +48,14 @@
       </div>
     {% else %}
       <div class="alert alert-info text-center">
-        Aucun vote enregistré pour le moment.
+        Aucun votant enregistré pour le moment.
       </div>
     {% endif %}
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Close buttons for message pop-up
+      // Gestion de la fermeture des pop-ups de message
       var closeButtons = document.querySelectorAll('.message-close');
       closeButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {

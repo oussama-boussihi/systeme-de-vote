@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Résultats{% endblock %}
+{% block hero %}{% endblock %}
+{% block content %}
+<div class="container mt-5 pt-5">
+  <h2 class="text-center mb-4" style="color: #48B8A0; font-weight: bold;">
+    Résultats des Votes
+  </h2>
+  <!-- Conteneur flex pour disposer les deux graphiques -->
+  <div class="d-flex justify-content-between">
+    <!-- Graphique en barres (50% de la largeur) -->
+    <div style="width:50%;">
+      <div class="card p-4 shadow-sm" style="background: rgba(0,0,0,0.8); border-radius: 8px; height: 70vh;">
+        <canvas id="resultsBarChart" style="width: 100%; height: 100%;"></canvas>
+      </div>
+    </div>
+    <!-- Graphique en secteur (40% de la largeur) -->
+    <div style="width:40%;">
+      <div class="card p-4 shadow-sm" style="background: rgba(0,0,0,0.8); border-radius: 8px; height: 70vh;">
+        <canvas id="resultsPieChart" style="width: 100%; height: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Insertion des données JSON dans le DOM #}
+<script id="voteResultsData" type="application/json">
+  {{ vote_results_json|safe }}
+</script>
+
+<!-- Inclusion de Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Récupération des données de vote
+    const voteResults = JSON.parse(document.getElementById('voteResultsData').textContent);
+    const labels = voteResults.map(item => item.bulltinvote);
+    const counts = voteResults.map(item => item.total);
+    
+    // Couleurs définies pour chacun des 5 candidats
+    const barColors = ['#48B8A0', '#FEC40E', '#FA8072', '#43D07C', '#DBBD6B'];
+    const borderColors = ['#397F76', '#D4A117', '#DB7672', '#43B07C', '#DBBD67'];
+    
+    // Graphique en barres
+    const ctxBar = document.getElementById('resultsBarChart').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Nombre de Votes',
+          data: counts,
+          backgroundColor: barColors,
+          borderColor: borderColors,
+          borderWidth: 2,
+          barThickness: 50,  
+          categoryPercentage: 0.8, 
+          barPercentage: 0.8       
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { left: 10, right: 10 } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: 'white' },
+            grid: { color: 'rgba(255, 255, 255, 0.2)' }
+          },
+          x: {
+            ticks: { color: '#48B8A0' },
+            grid: { color: 'rgba(72, 184, 160, 0.2)' }
+          }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            labels: {
+              generateLabels: function(chart) {
+                return labels.map((label, i) => ({
+                  text: `${label}: ${counts[i]} votes`,
+                  fontColor: barColors[i],
+                  fillStyle: barColors[i],
+                  strokeStyle: borderColors[i],
+                  lineWidth: 2,
+                  hidden: isNaN(counts[i]),
+                  index: i
+                }));
+              },
+              color: 'white'
+            }
+          }
+        }
+      }
+    });
+    
+    // Graphique en secteur (pie chart)
+    const ctxPie = document.getElementById('resultsPieChart').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: counts,
+          backgroundColor: barColors,
+          borderColor: borderColors,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            labels: { color: 'white' }
+          }
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

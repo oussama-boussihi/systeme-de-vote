@@ -137,16 +137,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = ''  # adresse gmail associée aux votants
-EMAIL_HOST_PASSWORD = ''  # Mot de passe d'application gmail 
+EMAIL_HOST_USER = 'ici email associe a Votant '  
+EMAIL_HOST_PASSWORD = 'ici mot de passe APP-PASSWORD de l email associe a Votant' 
 
 
-# Configuration du chemin vers GPG
-GPG_BINARY_PATH = "C:/Program Files (x86)/gnupg/bin/gpg.exe" #changer ce lien
 
-# Chemins des clés GPG
-GPG_KEYS_DIR = "C:/Users/oussa/voting_system" #changer ce lien
-GPG_PRIVATE_KEY_FILE = "privkeyvotant.asc"
-GPG_PUBLIC_KEY_CO_FILE = "pubkeyco.asc"
-GPG_PUBLIC_KEY_DE_FILE = "pubkeyde.asc"
 
