@@ -48,9 +48,11 @@ Clonez le répertoire sur votre machine locale et placez-vous dans le dossier du
 git clone https://github.com/oussama-boussihi/systeme-de-vote.git
 cd systeme-de-vote
 
+
 ### **2. Installation des Dépendances**
 ```bash
-pip install -r requirements.txt    
+pip install -r requirements.txt
+``` 
 
 ### **3. Configuration de GnuPG et des Clés**
 
@@ -62,7 +64,7 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-
+```
 ### **Captures d’Écran des Interfaces: **
 **Page d’Accueil**
 ![Voting home page](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Acceuil.png)
