@@ -69,9 +69,10 @@ python manage.py migrate
 python manage.py runserver
 
 ```
+## **Captures d’Écran des Interfaces**
 
-### **Captures d’Écran des Interfaces: **
 **Page d’Accueil**
+
 ![Voting home page](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Acceuil.png)
 
 
