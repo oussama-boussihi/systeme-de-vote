@@ -69,11 +69,36 @@ python manage.py migrate
 python manage.py runserver
 
 ```
+
+---
+
 ## **Captures d’Écran des Interfaces**
 
 **Page d’Accueil**
 
 ![Voting home page](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Acceuil.png)
+
+**Espace Votant**
+
+![Votant](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/espace%20Votant.png)
+
+**Espace centre de Comptage CO**
+
+![co](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Centre%20CO.png)
+
+**Affichage du bulletin chiffré dans le centre CO**
+
+![co-bull](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/Bulletin%20chiffre%20centre%20CO.png)
+
+**Espace centre de Dépouillement DE**
+
+![de](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/centre%20DE.png)
+
+**Résultas des votes**
+
+![results](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/resultats%20de%20vote.png)
+
+
 
 
 
