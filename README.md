@@ -44,7 +44,9 @@ Avant de lancer l’application, vérifiez d’avoir installé et configuré :
 ### **1. Clonage du Dépôt**
 
 Clonez le répertoire sur votre machine locale et placez-vous dans le dossier du projet :
-``` git clone https://github.com/oussama-boussihi/systeme-de-vote.git cd systeme-de-vote  ```
+``` 
+git clone https://github.com/oussama-boussihi/systeme-de-vote.git cd systeme-de-vote
+  ```
 
 
 
