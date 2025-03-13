@@ -99,6 +99,16 @@ python manage.py runserver
 ![results](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/voting/static/images/resultats%20de%20vote.png)
 
 
+---
+
+## **📄 Rapport du Projet**
+
+Pour une description détaillée de la conception, des techniques de chiffrement et des étapes de développement, consultez le rapport complet du projet :
+
+📎 **[Rapport du Système de Vote](https://github.com/oussama-boussihi/systeme-de-vote/blob/main/docs/Rapport_systeme_de_vote.pdf)**
+
+
+
 
 
 
